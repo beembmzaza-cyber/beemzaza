@@ -1,0 +1,405 @@
+<!-- register.html - ปรับใหม่ -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ลงทะเบียน - บทเรียนออนไลน์ AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #a0e9ff, #fbc2eb);
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a90e2;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: #357abd;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .link a {
+      color: #4a90e2;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    #majorSelect {
+      display: none;
+    }
+
+    #studentIdField {
+      display: none;
+    }
+
+    #studentIdField.show {
+      display: block;
+    }
+
+    .note {
+      background: #e3f2fd;
+      border: 1px solid #bbdefb;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+      color: #1976d2;
+      text-align: center;
+    }
+
+    #status {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ลงทะเบียน</h1>
+
+    <form id="registerForm">
+      <label for="name">ชื่อ-นามสกุล <span style="color: red;">*</span>:</label>
+      <input type="text" id="name" required placeholder="เช่น นายสมชาย ใจดี">
+
+      <label for="userId">User ID <span style="color: red;">*</span>:</label>
+      <input type="text" id="userId" required placeholder="เช่น username123">
+
+      <!-- ช่องรหัสนักศึกษาจะแสดงเฉพาะนักศึกษา -->
+      <div id="studentIdField">
+        <label for="studentId">รหัสนักศึกษา <span style="color: red;">*</span>:</label>
+        <input type="text" id="studentId" pattern="[0-9]{11}" placeholder="เช่น 65003120000" title="รหัสนักศึกษาต้องเป็นตัวเลข 11 หลัก">
+      </div>
+
+      <label for="password">รหัสผ่าน <span style="color: red;">*</span>:</label>
+      <input type="password" id="password" required minlength="6">
+
+      <label for="confirmPassword">ยืนยันรหัสผ่าน <span style="color: red;">*</span>:</label>
+      <input type="password" id="confirmPassword" required minlength="6">
+
+      <label for="faculty">คณะ <span style="color: red;">*</span>:</label>
+      <select id="faculty" required>
+        <option value="">เลือกคณะ</option>
+        <option value="science">คณะวิทยาศาสตร์และเทคโนโลยี</option>
+        <option value="education">คณะครุศาสตร์</option>
+        <option value="humanities">คณะมนุษยศาสตร์และสังคมศาสตร์</option>
+        <option value="management">คณะวิทยาการจัดการ</option>
+        <option value="industrial">คณะเทคโนโลยีอุตสาหกรรม</option>
+        <option value="other">อื่น ๆ</option>
+      </select>
+
+      <div class="note">
+        <strong>หมายเหตุ:</strong> ถ้าไม่ใช่นักศึกษา กรุณาเลือก "อื่น ๆ" ในคณะ สาขา และชั้นปี
+      </div>
+
+      <label for="major">สาขาวิชา <span style="color: red;">*</span>:</label>
+      <select id="majorSelect" required>
+        <option value="">กรุณาเลือกคณะก่อน</option>
+      </select>
+
+      <label for="year">ชั้นปี <span style="color: red;">*</span>:</label>
+      <select id="year" required>
+        <option value="">เลือกชั้นปี</option>
+        <option value="1">ปี 1</option>
+        <option value="2">ปี 2</option>
+        <option value="3">ปี 3</option>
+        <option value="4">ปี 4</option>
+        <option value="other">อื่น ๆ</option>
+      </select>
+
+      <button type="submit">ลงทะเบียน</button>
+      <div id="registerStatus"></div>
+    </form>
+
+    <div class="link">
+      <a href="login.html">มีบัญชีแล้ว? ล็อกอิน</a>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2CZUqkzhPh0FNaDnRXMUtAk0g9371vLU",
+      authDomain: "aiia-6012c.firebaseapp.com",
+      projectId: "aiia-6012c",
+      storageBucket: "aiia-6012c.firebasestorage.app",
+      messagingSenderId: "171409574391",
+      appId: "1:171409574391:web:44887260897d14ffb006f2",
+      measurementId: "G-NLFPNEVQP8"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Faculty and Major data
+    const faculties = {
+      science: {
+        name: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+        majors: [
+          'เทคโนโลยีการเกษตร',
+          'การอาหารและธุรกิจบริการ',
+          'เคมี',
+          'ชีววิทยาประยุกต์',
+          'เทคโนโลยีสารสนเทศ',
+          'ฟิสิกส์ประยุกต์',
+          'วิทยาการคอมพิวเตอร์',
+          'อาชีวอนามัยและความปลอดภัย',
+          'วิทยาศาสตร์สิ่งแวดล้อม'
+        ]
+      },
+      education: {
+        name: 'คณะครุศาสตร์',
+        majors: [
+          'การศึกษาปฐมวัย',
+          'คอมพิวเตอร์ศึกษา',
+          'คณิตศาสตร์',
+          'จิตวิทยาและการแนะแนว',
+          'ภาษาไทย',
+          'ภาษาอังกฤษ',
+          'ภาษาจีน',
+          'วิทยาศาสตร์ทั่วไป',
+          'เทคโนโลยีและการศึกษา',
+          'สังคมศึกษา'
+        ]
+      },
+      humanities: {
+        name: 'คณะมนุษยศาสตร์และสังคมศาสตร์',
+        majors: [
+          'การพัฒนาสังคม',
+          'นิติศาสตร์',
+          'รัฐศาสตร์',
+          'รัฐประศาสนศาสตร์',
+          'ภาษาอังกฤษ',
+          'ภาษาญี่ปุ่น',
+          'ดนตรีสากล',
+          'ทัศนศิลป์',
+          'สารสนเทศศาสตร์และบรรณารักษศาสตร์'
+        ]
+      },
+      management: {
+        name: 'คณะวิทยาการจัดการ',
+        majors: [
+          'การบัญชี',
+          'การตลาด',
+          'การจัดการ (ทั่วไป)',
+          'การจัดการธุรกิจการค้าสมัยใหม่',
+          'การจัดการทรัพยากรมนุษย์',
+          'นิเทศศาสตร์ดิจิทัล'
+        ]
+      },
+      industrial: {
+        name: 'คณะเทคโนโลยีอุตสาหกรรม',
+        majors: [
+          'วิศวกรรมการจัดการอุตสาหกรรม',
+          'วิศวกรรมการผลิตอัตโนมัติ',
+          'เทคโนโลยีอุตสาหกรรม'
+        ]
+      },
+      other: {
+        name: 'อื่น ๆ',
+        majors: [
+          'อื่น ๆ'
+        ]
+      }
+    };
+
+    // Function to toggle student ID field based on faculty selection
+    function toggleStudentIdField() {
+      const facultyValue = document.getElementById('faculty').value;
+      const studentIdField = document.getElementById('studentIdField');
+      const studentIdInput = document.getElementById('studentId');
+
+      if (facultyValue === 'other') {
+        // For non-student: Hide student ID field
+        studentIdField.classList.remove('show');
+        studentIdInput.required = false;
+      } else if (faculties[facultyValue]) {
+        // For student: Show student ID field and require it
+        studentIdField.classList.add('show');
+        studentIdInput.required = true;
+        studentIdInput.pattern = '[0-9]{11}';
+        studentIdInput.title = 'รหัสนักศึกษาต้องเป็นตัวเลข 11 หลัก';
+      } else {
+        // Default: Hide
+        studentIdField.classList.remove('show');
+        studentIdInput.required = false;
+      }
+    }
+
+    // Populate majors on faculty change
+    document.getElementById('faculty').addEventListener('change', function() {
+      toggleStudentIdField(); // Toggle student ID field
+      const facultyValue = this.value;
+      const majorSelect = document.getElementById('majorSelect');
+      majorSelect.innerHTML = '<option value="">เลือกสาขาวิชา</option>';
+      majorSelect.style.display = 'none';
+
+      if (facultyValue && faculties[facultyValue]) {
+        const majors = faculties[facultyValue].majors;
+        majors.forEach(major => {
+          const option = document.createElement('option');
+          option.value = major;
+          option.textContent = major;
+          majorSelect.appendChild(option);
+        });
+        majorSelect.style.display = 'block';
+      }
+    });
+
+    // Initial toggle on load
+    document.addEventListener('DOMContentLoaded', toggleStudentIdField);
+
+    // Register form submit
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const userId = document.getElementById('userId').value.trim();
+      const studentId = document.getElementById('studentId').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const facultyValue = document.getElementById('faculty').value;
+      const major = document.getElementById('majorSelect').value;
+      const year = document.getElementById('year').value;
+
+      const statusDiv = document.getElementById('registerStatus');
+
+      if (password !== confirmPassword) {
+        statusDiv.innerHTML = '<span class="error">รหัสผ่านไม่ตรงกัน</span>';
+        return;
+      }
+
+      if (!name || !userId || !password || !facultyValue || !major || !year) {
+        statusDiv.innerHTML = '<span class="error">กรุณากรอกข้อมูลให้ครบทุกช่อง</span>';
+        return;
+      }
+
+      // Additional validation for student ID if faculty is student-related
+      const facultyIsStudent = facultyValue !== 'other';
+      if (facultyIsStudent && !studentId) {
+        statusDiv.innerHTML = '<span class="error">กรุณากรอกรหัสนักศึกษา</span>';
+        return;
+      }
+      if (facultyIsStudent && !/^\d{11}$/.test(studentId)) {
+        statusDiv.innerHTML = '<span class="error">รหัสนักศึกษาต้องเป็นตัวเลข 11 หลัก</span>';
+        return;
+      }
+
+      const email = `${userId}@user.aiia.ac.th`; // สร้าง email จาก User ID สำหรับ auth
+
+      try {
+        // Create user
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Prepare user data
+        const userData = {
+          name: name,
+          userId: userId,
+          studentId: facultyIsStudent ? studentId : null, // เก็บรหัสนักศึกษาเฉพาะนักศึกษา
+          email: email,
+          faculty: faculties[facultyValue].name,
+          major: major,
+          year: year === 'other' ? 'อื่น ๆ' : parseInt(year)
+        };
+
+        // Save user data to Firestore
+        await setDoc(doc(db, 'users', user.uid), userData);
+
+        statusDiv.innerHTML = '<span class="success">ลงทะเบียนสำเร็จ! กำลังเปลี่ยนเส้นทางไปล็อกอิน...</span>';
+        setTimeout(() => {
+          window.location.href = 'login.html'; // Redirect to login
+        }, 2000);
+      } catch (error) {
+        console.error(error);
+        if (error.code === 'auth/email-already-in-use') {
+          statusDiv.innerHTML = '<span class="error">User ID นี้ถูกใช้งานแล้ว กรุณาล็อกอินแทน</span>';
+        } else {
+          statusDiv.innerHTML = `<span class="error">เกิดข้อผิดพลาด: ${error.message}</span>`;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

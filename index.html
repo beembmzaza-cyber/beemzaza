@@ -48,7 +48,6 @@
       box-shadow: 2px 0 10px rgba(0,0,0,0.05);
     }
 
-    /* 🎨 การ์ดข้อมูลนักศึกษา */
     .user-info {
       background: white;
       padding: 20px;
@@ -194,7 +193,7 @@
 
     iframe {
       width: 100%;
-      height: 400px;
+      height: 600px; /* เพิ่มความสูงเพื่อให้ PDF อ่านง่าย */
       border: none;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -218,7 +217,7 @@
       position: absolute;
       top: 20px;
       left: 20px;
-      background: rgba(74, 144, 226, 0.8); /* สีน้ำเงินกึ่งโปร่งใส */
+      background: rgba(74, 144, 226, 0.8);
       color: white;
       padding: 10px 20px;
       border-radius: 8px;
@@ -231,7 +230,7 @@
     }
 
     .video-container:hover .video-overlay {
-      opacity: 0.7; /* จางลงเมื่อ hover */
+      opacity: 0.7;
     }
 
     ul {
@@ -356,7 +355,7 @@
       }
 
       iframe {
-        height: 300px;
+        height: 400px; /* ปรับสำหรับหน้าจอเล็ก */
       }
 
       video {
@@ -452,7 +451,9 @@
         <section id="section1" class="active">
           <h2>ทดสอบก่อนเริ่มเรียน</h2>
           <p class="intro">มาลองเช็คความรู้พื้นฐานเกี่ยวกับ AI กันก่อน ใช้เวลาแค่ 5 นาที!</p>
-          <iframe src="https://forms.gle/gRLucYRnBsM2FXYy7">กำลังโหลด...</iframe>
+          <iframe src="https://forms.gle/gRLucYRnBsM2FXYy7">
+            <p>ไม่สามารถโหลดแบบทดสอบได้ <a href="https://forms.gle/gRLucYRnBsM2FXYy7">คลิกที่นี่เพื่อดูแบบทดสอบ</a></p>
+          </iframe>
           <button class="cta-button" onclick="showNextSection(1)">ไปที่เนื้อหาการเรียน</button>
         </section>
 
@@ -460,7 +461,9 @@
         <section id="section2">
           <h2>เนื้อหาการเรียน</h2>
           <p class="intro">เรียนรู้เครื่องมือ AI สุดเจ๋งที่ช่วยให้การเรียนและทำงานง่ายขึ้น!</p>
-          <iframe src="https://drive.google.com/file/d/1B_irq6hB9Ei81OxyIPOsWg-mqywWZMxl/view?usp=sharing" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+          <iframe src="https://drive.google.com/file/d/1B_irq6hB9Ei81OxyIPOsWg-mqywWZMxl/preview" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+            <p>ไม่สามารถโหลด PDF ได้ <a href="https://drive.google.com/file/d/1B_irq6hB9Ei81OxyIPOsWg-mqywWZMxl/view?usp=sharing">คลิกที่นี่เพื่อดู PDF</a></p>
+          </iframe>
           <div class="video-container">
             <video width="100%" height="400" controls>
               <source src="AI.mp4" type="video/mp4">
@@ -507,7 +510,9 @@
         <section id="section3">
           <h2>แบบทดสอบหลังเรียน</h2>
           <p class="intro">ทดสอบความเข้าใจหลังเรียนจบ เพื่อรับใบรับรอง!</p>
-          <iframe src="https://forms.gle/Fsux2tQhMc39iYtk9">กำลังโหลด...</iframe>
+          <iframe src="https://forms.gle/Fsux2tQhMc39iYtk9">
+            <p>ไม่สามารถโหลดแบบทดสอบได้ <a href="https://forms.gle/Fsux2tQhMc39iYtk9">คลิกที่นี่เพื่อดูแบบทดสอบ</a></p>
+          </iframe>
           <button class="cta-button" onclick="showNextSection(3)">ไปต่อ</button>
         </section>
 
@@ -515,7 +520,9 @@
         <section id="section4">
           <h2>บอกเราว่าคิดยังไง!</h2>
           <p class="intro">ช่วยเราปรับปรุงบทเรียนด้วยการทำแบบประเมินสั้น ๆ</p>
-          <iframe src="https://forms.gle/hvXW1oLZbYtzkE3h6">กำลังโหลด...</iframe>
+          <iframe src="https://forms.gle/hvXW1oLZbYtzkE3h6">
+            <p>ไม่สามารถโหลดแบบประเมินได้ <a href="https://forms.gle/hvXW1oLZbYtzkE3h6">คลิกที่นี่เพื่อดูแบบประเมิน</a></p>
+          </iframe>
         </section>
 
         <footer>
@@ -617,4 +624,3 @@
 
 </body>
 </html>
-

@@ -200,12 +200,38 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
     video {
       width: 100%;
       height: 400px;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-top: 20px;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(74, 144, 226, 0.8); /* สีน้ำเงินกึ่งโปร่งใส */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.5em;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    .video-container:hover .video-overlay {
+      opacity: 0.7; /* จางลงเมื่อ hover */
     }
 
     ul {
@@ -337,6 +363,13 @@
         height: 300px;
       }
 
+      .video-overlay {
+        font-size: 1.2em;
+        padding: 8px 15px;
+        top: 15px;
+        left: 15px;
+      }
+
       .cta-button {
         display: block;
         margin: 10px auto;
@@ -367,6 +400,13 @@
 
       .user-details div {
         padding: 10px;
+      }
+
+      .video-overlay {
+        font-size: 1em;
+        padding: 6px 12px;
+        top: 10px;
+        left: 10px;
       }
     }
   </style>
@@ -409,72 +449,74 @@
         </nav>
 
         <!-- 1. แบบทดสอบก่อนเรียน -->
-  <section id="section1" class="active">
-    <h2>ทดสอบก่อนเริ่มเรียน</h2>
-    <p class="intro">มาลองเช็คความรู้พื้นฐานเกี่ยวกับ AI กันก่อน ใช้เวลาแค่ 5 นาที!</p>
-    <iframe src="https://forms.gle/gRLucYRnBsM2FXYy7">กำลังโหลด...</iframe>
-    <button class="cta-button" onclick="showNextSection(1)">ไปที่เนื้อหาการเรียน</button>
-  </section>
+        <section id="section1" class="active">
+          <h2>ทดสอบก่อนเริ่มเรียน</h2>
+          <p class="intro">มาลองเช็คความรู้พื้นฐานเกี่ยวกับ AI กันก่อน ใช้เวลาแค่ 5 นาที!</p>
+          <iframe src="https://forms.gle/gRLucYRnBsM2FXYy7">กำลังโหลด...</iframe>
+          <button class="cta-button" onclick="showNextSection(1)">ไปที่เนื้อหาการเรียน</button>
+        </section>
 
-  <!-- 2. เนื้อหาการเรียน -->
-  <section id="section2">
-    <h2>เนื้อหาการเรียน</h2>
-    <p class="intro">เรียนรู้เครื่องมือ AI สุดเจ๋งที่ช่วยให้การเรียนและทำงานง่ายขึ้น!</p>
-    <iframe src="https://docs.google.com/presentation/d/1reyN13gOzdzRZG3xE2zq3Ihbs1btdW4x/embed" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-    <video width="100%" height="400" controls>
-      <source src="AI.mp4" type="video/mp4">
-      เบราว์เซอร์ของคุณไม่รองรับการแสดงวิดีโอ
-    </video>
-    <ul>
-      <li>
-        <div>
-          <b>Google Gemini</b> – สร้างสรรค์งานเขียนและค้นหาข้อมูลด้วยโมเดลภาษาจาก Google<br>
-          <strong>วิธีใช้:</strong> เข้าไปที่เว็บ Google Gemini หรือแอป (ถ้ามี) สมัครด้วยบัญชี Google แล้วลองพิมพ์คำถามหรือคำสั่ง เช่น "ช่วยเขียนย่อหน้าสรุปบทความเกี่ยวกับ AI" หรือ "ค้นหาข้อมูลเกี่ยวกับ machine learning แบบเข้าใจง่าย" Gemini จะตอบด้วยภาษาที่ชัดเจนและมีประโยชน์สุด ๆ เหมาะสำหรับทำรายงานหรือหาไอเดียใหม่ ๆ แถมยังช่วยแปลภาษาได้ด้วย!
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>ChatGPT</b> – ใช้ AI ช่วยทำการบ้าน ทำงานกลุ่ม หรือหาไอเดียใหม่ ๆ<br>
-          <strong>วิธีใช้:</strong> เข้าไปที่ chat.openai.com สมัครบัญชี แล้วเริ่มแชทได้เลย! ลองถาม เช่น "ช่วยเขียนโครงร่างสำหรับพรีเซนต์เรื่อง AI ใน 5 นาที" หรือ "อธิบาย neural network ให้คนที่ไม่รู้เรื่องเทคโนโลยีฟัง" ChatGPT จะช่วยจัดโครงสร้างงาน แก้ปัญหาการบ้าน หรือแม้แต่ร่างอีเมลให้อาจารย์ แต่อย่าลืมตรวจคำตอบก่อนใช้ เพราะบางครั้งมันอาจจะพูดเกินจริง!
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Canva</b> – ออกแบบงานนำเสนอและกราฟิกสุดปังในไม่กี่คลิก<br>
-          <strong>วิธีใช้:</strong> ไปที่ www.canva.com สมัครฟรีด้วยอีเมลนักศึกษา (อาจได้ฟีเจอร์พรีเมียมฟรี!) เลือกเทมเพลต เช่น สไลด์นำเสนอ โปสเตอร์ หรือ infographic แล้วลากวางข้อความ รูปภาพ หรือกราฟิกได้เลย Canva มี AI ช่วยแนะนำดีไซน์และปรับแต่งสีให้เข้ากัน เหมาะสำหรับทำสไลด์พรีเซนต์วิชาเรียนหรือโปรเจกต์กลุ่มที่ต้องว้าว!
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Botnoi</b> – แชทบอทภาษาไทยที่ช่วยตอบคำถามและทำงานอัตโนมัติ<br>
-          <strong>วิธีใช้:</strong> เข้าไปที่เว็บหรือแอป Botnoi (เช่น botnoi.ai) แล้วลองแชทเป็นภาษาไทย เช่น "ช่วยสรุปเนื้อหาวิชาการจัดการข้อมูล" หรือ "เขียนสคริปต์พูดแนะนำตัว 1 นาที" Botnoi เหมาะกับนักศึกษาที่ต้องการคำตอบเร็ว ๆ ในภาษาไทย แถมยังช่วยทำงานง่าย ๆ เช่น ตั้งตารางเรียนหรือคำนวณงบประมาณโปรเจกต์ ลองเล่นดู ใช้งานง่ายสุด ๆ!
-        </div>
-      </li>
-      <li>
-        <div>
-          <b>Pixverse.ai</b> – สร้างภาพและวิดีโอด้วย AI สำหรับโปรเจกต์สุดครีเอทีฟ<br>
-          <strong>วิธีใช้:</strong> ไปที่ pixverse.ai สมัครบัญชี แล้วพิมพ์คำอธิบาย เช่น "สร้างภาพเมืองอนาคตในสไตล์ cyberpunk" หรือ "ทำวิดีโอสั้น ๆ เป็นแอนิเมชันเกี่ยวกับ AI" Pixverse จะสร้างภาพหรือวิดีโอให้ในไม่กี่วินาที เหมาะสำหรับทำสื่อประกอบพรีเซนต์หรือโปรเจกต์ศิลปะ แถมยังแชร์ผลงานไปอวดเพื่อนได้เลย!
-        </div>
-      </li>
-    </ul>
+        <!-- 2. เนื้อหาการเรียน -->
+        <section id="section2">
+          <h2>เนื้อหาการเรียน</h2>
+          <p class="intro">เรียนรู้เครื่องมือ AI สุดเจ๋งที่ช่วยให้การเรียนและทำงานง่ายขึ้น!</p>
+          <iframe src="https://docs.google.com/presentation/d/1reyN13gOzdzRZG3xE2zq3Ihbs1btdW4x/embed" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+          <div class="video-container">
+            <video width="100%" height="400" controls>
+              <source src="AI.mp4" type="video/mp4">
+              เบราว์เซอร์ของคุณไม่รองรับการแสดงวิดีโอ
+            </video>
+            <div class="video-overlay">ตัวอย่างวิดีโอ</div>
+          </div>
+          <ul>
+            <li>
+              <div>
+                <b>Google Gemini</b> – สร้างสรรค์งานเขียนและค้นหาข้อมูลด้วยโมเดลภาษาจาก Google<br>
+                <strong>วิธีใช้:</strong> เข้าไปที่เว็บ Google Gemini หรือแอป (ถ้ามี) สมัครด้วยบัญชี Google แล้วลองพิมพ์คำถามหรือคำสั่ง เช่น "ช่วยเขียนย่อหน้าสรุปบทความเกี่ยวกับ AI" หรือ "ค้นหาข้อมูลเกี่ยวกับ machine learning แบบเข้าใจง่าย" Gemini จะตอบด้วยภาษาที่ชัดเจนและมีประโยชน์สุด ๆ เหมาะสำหรับทำรายงานหรือหาไอเดียใหม่ ๆ แถมยังช่วยแปลภาษาได้ด้วย!
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>ChatGPT</b> – ใช้ AI ช่วยทำการบ้าน ทำงานกลุ่ม หรือหาไอเดียใหม่ ๆ<br>
+                <strong>วิธีใช้:</strong> เข้าไปที่ chat.openai.com สมัครบัญชี แล้วเริ่มแชทได้เลย! ลองถาม เช่น "ช่วยเขียนโครงร่างสำหรับพรีเซนต์เรื่อง AI ใน 5 นาที" หรือ "อธิบาย neural network ให้คนที่ไม่รู้เรื่องเทคโนโลยีฟัง" ChatGPT จะช่วยจัดโครงสร้างงาน แก้ปัญหาการบ้าน หรือแม้แต่ร่างอีเมลให้อาจารย์ แต่อย่าลืมตรวจคำตอบก่อนใช้ เพราะบางครั้งมันอาจจะพูดเกินจริง!
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Canva</b> – ออกแบบงานนำเสนอและกราฟิกสุดปังในไม่กี่คลิก<br>
+                <strong>วิธีใช้:</strong> ไปที่ www.canva.com สมัครฟรีด้วยอีเมลนักศึกษา (อาจได้ฟีเจอร์พรีเมียมฟรี!) เลือกเทมเพลต เช่น สไลด์นำเสนอ โปสเตอร์ หรือ infographic แล้วลากวางข้อความ รูปภาพ หรือกราฟิกได้เลย Canva มี AI ช่วยแนะนำดีไซน์และปรับแต่งสีให้เข้ากัน เหมาะสำหรับทำสไลด์พรีเซนต์วิชาเรียนหรือโปรเจกต์กลุ่มที่ต้องว้าว!
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Botnoi</b> – แชทบอทภาษาไทยที่ช่วยตอบคำถามและทำงานอัตโนมัติ<br>
+                <strong>วิธีใช้:</strong> เข้าไปที่เว็บหรือแอป Botnoi (เช่น botnoi.ai) แล้วลองแชทเป็นภาษาไทย เช่น "ช่วยสรุปเนื้อหาวิชาการจัดการข้อมูล" หรือ "เขียนสคริปต์พูดแนะนำตัว 1 นาที" Botnoi เหมาะกับนักศึกษาที่ต้องการคำตอบเร็ว ๆ ในภาษาไทย แถมยังช่วยทำงานง่าย ๆ เช่น ตั้งตารางเรียนหรือคำนวณงบประมาณโปรเจกต์ ลองเล่นดู ใช้งานง่ายสุด ๆ!
+              </div>
+            </li>
+            <li>
+              <div>
+                <b>Pixverse.ai</b> – สร้างภาพและวิดีโอด้วย AI สำหรับโปรเจกต์สุดครีเอทีฟ<br>
+                <strong>วิธีใช้:</strong> ไปที่ pixverse.ai สมัครบัญชี แล้วพิมพ์คำอธิบาย เช่น "สร้างภาพเมืองอนาคตในสไตล์ cyberpunk" หรือ "ทำวิดีโอสั้น ๆ เป็นแอนิเมชันเกี่ยวกับ AI" Pixverse จะสร้างภาพหรือวิดีโอให้ในไม่กี่วินาที เหมาะสำหรับทำสื่อประกอบพรีเซนต์หรือโปรเจกต์ศิลปะ แถมยังแชร์ผลงานไปอวดเพื่อนได้เลย!
+              </div>
+            </li>
+          </ul>
+          <button class="cta-button" onclick="showNextSection(2)">ไปต่อ</button>
+        </section>
 
-    <button class="cta-button" onclick="showNextSection(2)">ไปต่อ</button>
-  </section>
+        <!-- 3. แบบทดสอบหลังเรียน -->
+        <section id="section3">
+          <h2>แบบทดสอบหลังเรียน</h2>
+          <p class="intro">ทดสอบความเข้าใจหลังเรียนจบ เพื่อรับใบรับรอง!</p>
+          <iframe src="https://forms.gle/Fsux2tQhMc39iYtk9">กำลังโหลด...</iframe>
+          <button class="cta-button" onclick="showNextSection(3)">ไปต่อ</button>
+        </section>
 
-  <!-- 3. แบบทดสอบหลังเรียน -->
-  <section id="section3">
-    <h2>แบบทดสอบหลังเรียน</h2>
-    <p class="intro">ทดสอบความเข้าใจหลังเรียนจบ เพื่อรับใบรับรอง!</p>
-    <iframe src="https://forms.gle/Fsux2tQhMc39iYtk9">กำลังโหลด...</iframe>
-    <button class="cta-button" onclick="showNextSection(3)">ไปต่อ</button>
-  </section>
-
-  <!-- 4. แบบประเมินความพึงพอใจ -->
-  <section id="section4">
-    <h2>บอกเราว่าคิดยังไง!</h2>
-    <p class="intro">ช่วยเราปรับปรุงบทเรียนด้วยการทำแบบประเมินสั้น ๆ</p>
-    <iframe src="https://forms.gle/hvXW1oLZbYtzkE3h6">กำลังโหลด...</iframe>
-  </section>
+        <!-- 4. แบบประเมินความพึงพอใจ -->
+        <section id="section4">
+          <h2>บอกเราว่าคิดยังไง!</h2>
+          <p class="intro">ช่วยเราปรับปรุงบทเรียนด้วยการทำแบบประเมินสั้น ๆ</p>
+          <iframe src="https://forms.gle/hvXW1oLZbYtzkE3h6">กำลังโหลด...</iframe>
+        </section>
 
         <footer>
           © 2025 บทเรียนออนไลน์การใช้ AI | สร้างมาเพื่อนักศึกษาสุดคูล
@@ -575,5 +617,3 @@
 
 </body>
 </html>
-
-
